@@ -1,4 +1,5 @@
 # AppEngCW
+
 Repository for my AppEng 2021/22 CW
 
 ## ToDo List
@@ -28,7 +29,6 @@ The official document for the coursework is [here](https://docs.google.com/docum
 * Customers can design their own kits by specifying brick types and quantities and uploading an instruction file for others to use when building
 * Loyalty program (the more you buy, the less you pay, or a membership programme where paying members get a percentage off)
 
-
 ### What the coursework needs to cover
 
 * You are to specify and construct this tool using a combination of HTML, CSS, and JavaScript; the user interface must run in a web browser.
@@ -45,7 +45,8 @@ The official document for the coursework is [here](https://docs.google.com/docum
   * *details your design and implementation rationale* and
   * lists unfinished and future work
 
-### Notes
+### Lecturer Notes
+
 * This individual work
 * If you need help you should:
   * Use class/online time to ask your tutor
@@ -59,6 +60,12 @@ The official document for the coursework is [here](https://docs.google.com/docum
 
 ## Key features and how to use them
 
+* I will include the features of my website and how to use them here.
+
 ## Design and Implementation Rationale
 
+* I will include the design and implementation rationale here.
+
 ## Unfinished and future work
+
+* I will mention any unfinished work or work that I would like to have completed here.
