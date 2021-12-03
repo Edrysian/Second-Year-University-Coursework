@@ -1,2 +1,64 @@
 # AppEngCW
 Repository for my AppEng 2021/22 CW
+
+## ToDo List
+
+* Build a basic server to serve static files
+* Think about and design an API for discovering what bricks are for sale
+* Start to implement API
+* Create page(s) that use API
+
+## Coursework
+
+The official document for the coursework is [here](https://docs.google.com/document/d/1RDTVmu2gZ1a4BdZvq0v8Nr5zzX1xmxtCIHfwmGdTwNU/edit)
+
+### Core capabilities
+
+* Maintain an inventory of items for sale, and stock levels
+* Shopping cart
+* Client can place multiples of each brick in their cart for purchase
+* Simulated checkout (not in any detail, assume the payment gateway is a 'black box' which handles all card details etc), and update stock levels
+
+### Additional Features
+
+* Search/filter by colour, type, size, etc
+* Customers can place orders for out of stick bricks so that the company know what to order
+* Each brick and kit has its own web page with a unique URL
+* Model kits affect overall shop stock, but can be added to the cart as single items
+* Customers can design their own kits by specifying brick types and quantities and uploading an instruction file for others to use when building
+* Loyalty program (the more you buy, the less you pay, or a membership programme where paying members get a percentage off)
+
+
+### What the coursework needs to cover
+
+* You are to specify and construct this tool using a combination of HTML, CSS, and JavaScript; the user interface must run in a web browser.
+* You must not use frameworks or UI template engines (e.g. ejs, bootstrap, vue.js, angular, react, jquery etc...). You must use vanilla js, HTML5 and CSS. HTML5 templates are fine.
+* You are allowed to use ExpressJS and non-ui npm libraries. If in doubt, check with lecturers.
+* **IF** a database is required, you must only use services available on your VM (i.e. SQLite, Postgres and MySQL - you may not use external DB services or rely on us installing your favourite DB when marking).
+* The server must launch with `npm start`
+  * When the server stats on the test machine, it must be reachable via HTTP on port 8080.
+  * If your server requires a configuration step, this must be achieved via the command `npm run setup` and documented in the README file.
+  * The only manual steps they will undertake are setting IDs and passwords in the config files.
+* If the server doesn't start, they will assess the work based on the source code without the benefit of seeing it run.
+* **You must include a README.md file** that
+  * explains key features & how to use them
+  * *details your design and implementation rationale* and
+  * lists unfinished and future work
+
+### Notes
+* This individual work
+* If you need help you should:
+  * Use class/online time to ask your tutor
+  * Discuss the problem with your peers (it's ok to discuss, just **don't work together on a shared solution**).
+* Your task is to show (through your work) the extent to which you have met the *learning outcomes* for the module, which are:
+  * Design, implement, test and evaluate applications that use the techniques and tools of contemporary software engineering
+  * Critically examine programming paradigms, and *formulate arguments as to why a particular approach may be appropriate for a given task*.
+  * Identify industry best practices in application design (e.g. client, server and API layers).
+
+----------------------------------------------------------
+
+## Key features and how to use them
+
+## Design and Implementation Rationale
+
+## Unfinished and future work
