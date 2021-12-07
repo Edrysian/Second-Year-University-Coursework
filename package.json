@@ -1,0 +1,25 @@
+{
+  "name": "appengcw",
+  "version": "1.0.0",
+  "description": "Repository for my AppEng 2021/22 CW",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UP938769/AppEngCW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UP938769/AppEngCW/issues"
+  },
+  "homepage": "https://github.com/UP938769/AppEngCW#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
