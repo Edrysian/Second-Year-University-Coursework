@@ -8,7 +8,8 @@ Repository for my AppEng 2021/22 CW
 * Think about and design an API for discovering what bricks are for sale
 * Start to implement API
 * Create page(s) that use API
------------------------------------------
+
+-----
 
 * Build a server to be able to host the client
 * Build the client folder
@@ -63,7 +64,7 @@ The official document for the coursework is [here](https://docs.google.com/docum
   * Critically examine programming paradigms, and *formulate arguments as to why a particular approach may be appropriate for a given task*.
   * Identify industry best practices in application design (e.g. client, server and API layers).
 
-----------------------------------------------------------
+-----
 
 ## Key features and how to use them
 
