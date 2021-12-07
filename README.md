@@ -4,17 +4,13 @@ Repository for my AppEng 2021/22 CW
 
 ## ToDo List
 
-* Build a basic server to serve static files
-* Think about and design an API for discovering what bricks are for sale
-* Start to implement API
-* Create page(s) that use API
-
------
-
 * Build a server to be able to host the client
 * Build the client folder
   * Have index.js and similar HTML and CSS files
 * Create API
+  * Think about and design an API for discovering what bricks are for sale
+  * Start to implement API
+  * Create page(s) that use API
 * Connect server and client
 
 ## Coursework
