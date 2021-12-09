@@ -73,3 +73,18 @@ The official document for the coursework is [here](https://docs.google.com/docum
 ## Unfinished and future work
 
 * I will mention any unfinished work or work that I would like to have completed here.
+
+### Planned work
+
+* Login button - top left
+* Drop down menus - top middle
+  * Our kits
+  * Individual Bricks
+  * Containers - to store bricks in
+  * Merchandise??? (Everyone has merch nowadays)
+* Set square for each brick
+* Image of brick
+* Quantity entry box
+  * Add to basket "quantity"
+* Stock level
+* Basket access - top left
