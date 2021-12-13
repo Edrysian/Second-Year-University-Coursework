@@ -1,4 +1,4 @@
-function pageLoaded(){
+function pageLoaded() {
   console.log('Page Loaded');
 }
 
