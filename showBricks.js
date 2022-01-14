@@ -1,13 +1,13 @@
 'use strict';
 
-const data = require('./bricks.json');
+import * as data from './bricks.json';
 
 function brickData(){
     return data;
 }
 
 function findBrick(){
-    for (brick of bricks){
+    for (const brick of bricks){
         if (brick.id = id){
             return data;
         }
@@ -17,5 +17,5 @@ function findBrick(){
 
 module.exports = {
     brickData,
-    findBrick
-}
+    findBrick,
+};
