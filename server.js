@@ -3,9 +3,9 @@
 import express from 'express';
 
 const app = express();
-const brickList = require('./brickList');
-app.use(express.static('client'));
+import * as brickList from './brickList.js';
 
+app.use(express.static('client'));
 console.log("Server Running");
 
 function getBricks(req, res){
@@ -33,8 +33,8 @@ function putBrick(req, res){
 
 app.get('/data', getBricks);
 app.get('/data/:id', getBrickInfo);
-app.post('/data', postBrick);
 app.put('/data/:id', putBrick);
+app.post('/data', postBrick);
 app.get('/bricks', (req, res) => {
     res.json(data);
 });
