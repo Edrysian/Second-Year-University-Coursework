@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "image": "image",
+        "image": "images/1x1-AngularBrick-Brown.jpg",
         "Name": "Name",
         "Colour": "Green",
         "Description": "Yes"
