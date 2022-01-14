@@ -3,7 +3,7 @@
 import express from 'express';
 
 const app = express();
-import * as brickList from './brickList.js';
+import * as brickList from './showBricks.js';
 
 app.use(express.static('client'));
 console.log("Server Running");
