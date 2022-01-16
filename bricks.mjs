@@ -1,4 +1,4 @@
-[
+export const brickz = [
     {
         "id": 1,
         "image": "images/1x1-AngularBrick-Brown.jpg",

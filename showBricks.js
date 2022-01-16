@@ -1,6 +1,6 @@
 'use strict';
 
-import * as data from './bricks.json';
+import * as data from './bricks.mjs';
 
 function brickData(){
     return data;
