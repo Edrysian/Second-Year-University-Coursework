@@ -8,26 +8,23 @@ function removeContent(content){
     }
 }
 
-function showBricks(data){
+function showBricks(data, where){
     for (const brick of data){
         const li = document.createElement('li');
         li.textContent = brick.name;
         li.dataset.id = brick.id;
         
         const img = document.createElement('img');
-        img.src = './images';
+        img.src = brick.image;
         img.dataset.id = brick.id;
-        li.append(" ", img);
-
-        const colour = document.createElement('li');
-        li.textContent = brick.colour;
-        li.dataset.id = brick.id;
-        li.append(colour);
+        li.append(img);
+        
+        where.append(li);
     }
 }
 
 async function loadBricks(req, res){
-    const response = await fetch('data/');
+    const response = await fetch('/data');
     let data;
     if (response.ok){
         data = await response.json();
@@ -35,7 +32,7 @@ async function loadBricks(req, res){
         data = [{name: 'Could not load brick. Please try again!'}]
     }
     removeContent(el.bricks);
-    brickList(data, el.bricks);
+    showBricks(data, el.bricks);
 }
 
 function prepareHandles(){

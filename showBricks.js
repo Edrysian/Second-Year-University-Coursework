@@ -2,11 +2,11 @@
 
 import * as data from './bricks.mjs';
 
-function brickData(){
-    return data;
+export function brickData(){
+    return data.brickz;
 }
 
-function findBrick(){
+export function findBrick(){
     for (const brick of bricks){
         if (brick.id = id){
             return data;
@@ -14,8 +14,3 @@ function findBrick(){
     }
     return null;
 }
-
-module.exports = {
-    brickData,
-    findBrick,
-};
