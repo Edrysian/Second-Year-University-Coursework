@@ -575,7 +575,7 @@ export const brickz = [
     },
     {
         "id": 83,
-        "image": "images/Flower-Pink.jpg",
+        "image": "images/1x1-FlowerStud--Pink.jpg",
         "Name": "Name",
         "Colour": "Green",
         "Description": "Yes"
