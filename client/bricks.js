@@ -19,6 +19,11 @@ function showBricks(data, where){
         img.dataset.id = brick.id;
         li.append(img);
         
+        const name = document.createElement('p');
+        name.src = brick.name;
+        name.dataset.id = brick.id;
+        li.append(name);
+
         where.append(li);
     }
 }
