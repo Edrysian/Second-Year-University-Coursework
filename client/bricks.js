@@ -2,12 +2,14 @@
 
 const el = {};
 
+// Remove all of the content on the specified area
 function removeContent(content){
     while (content.firstElementChild){
         content.firstElementChild.remove();
     }
 }
 
+// Creates the list of bricks on "bricks.html"
 function showBricks(data, where){
     for (const brick of data){
         const li = document.createElement('li');
@@ -28,6 +30,7 @@ function showBricks(data, where){
     }
 }
 
+// Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for "removeContent"  
 async function loadBricks(req, res){
     const response = await fetch('/data');
     let data;
@@ -40,10 +43,12 @@ async function loadBricks(req, res){
     showBricks(data, el.bricks);
 }
 
+// Gets hold of the element '#bricks' from bricks.html
 function prepareHandles(){
     el.bricks = document.querySelector('#bricks');
 }
 
+// Is called by eventListener at bottom of file. Calls other functions
 function pageLoaded(){
     prepareHandles();
     loadBricks();
