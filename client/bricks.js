@@ -46,6 +46,10 @@ async function loadBricks(req, res){
 //Sends the clicked item in the list to the basket (Use event.target)
 function toBasket(){
     // event.target
+    el.bricks.addEventListener('click', toBasket);
+    // console.log('Works!');
+    EventTarget = el.bricks.dataset.id;
+    console.log(EventTarget);
 }
 
 // Gets hold of the element '#bricks' from bricks.html
@@ -57,8 +61,8 @@ function prepareHandles(){
 function pageLoaded(){
     prepareHandles();
     loadBricks();
+    toBasket();
 }
 
-el.bricks.addEventListener('click', toBasket);
 
 window.addEventListener('load', pageLoaded);
