@@ -11,7 +11,7 @@ Repository for my AppEng 2021/22 CW
   * Think about and design an API for discovering what bricks are for sale
   * Start to implement API
   * Create page(s) that use API
-* Connect server and client
+* ~~Connect server and client~~
 * Create a database and store bricks in it.
   * Take pictures of the list of bricks in the instruction manual that I have.
 * Connect the db to the client
