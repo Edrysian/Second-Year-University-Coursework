@@ -84,7 +84,6 @@ The official document for the coursework is [here](https://docs.google.com/docum
   * Our kits
   * Individual Bricks
   * Containers - to store bricks in
-  * Merchandise??? (Everyone has merch nowadays)
 * Set square for each brick
 * Image of brick
 * Quantity entry box
