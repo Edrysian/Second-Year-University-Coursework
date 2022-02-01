@@ -1,6 +1,9 @@
 'use strict';
 
+// import * as basket from '../modules.mjs';
+
 const el = {};
+
 
 // Remove all of the content on the specified area
 function removeContent(content){
@@ -46,9 +49,9 @@ async function loadBricks(req, res){
 //Sends the clicked item in the list to the basket (Use event.target)
 function toBasket(event){
     console.log(event.target.dataset.id);
-    // Need to take ID and ask server to add that specific ID to basket.html
-    let itemID = event.target.dataset.id;
-    // When I click on an item I want the basket to request that specific item from the server
+    addToBasket();
+
+    // let itemID = event.target.dataset.id;
 }
 
 // Gets hold of the element '#bricks' from bricks.html
