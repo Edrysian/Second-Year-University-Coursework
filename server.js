@@ -4,7 +4,6 @@ import express from 'express';
 
 const app = express();
 import * as brickList from './showBricks.js';
-// import * as modules from './modules.mjs';
 
 app.use(express.static('client'));
 console.log("Server Running");
