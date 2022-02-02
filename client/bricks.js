@@ -1,6 +1,6 @@
 'use strict';
 
-// import * as basket from '../modules.mjs';
+import { addToBasket } from "./basket.js";
 
 const el = {};
 
@@ -48,10 +48,12 @@ async function loadBricks(req, res){
 
 //Sends the clicked item in the list to the basket (Use event.target)
 function toBasket(event){
-    console.log(event.target.dataset.id);
-    addToBasket();
-
-    // let itemID = event.target.dataset.id;
+    if (event.target.dataset.id != undefined){
+        console.log(event.target.dataset.id);
+        addToBasket();
+    } else {
+        console.log(Error("Brick not found"));
+    }
 }
 
 // Gets hold of the element '#bricks' from bricks.html
