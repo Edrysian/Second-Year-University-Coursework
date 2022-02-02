@@ -26,14 +26,14 @@ function postBrick(req, res){
     res.json(bricks);
 }
 
-function putBrick(req, res){
-    const brick = brickList.editBrick(req.body);
-    res.json(brick);
-}
+// function putBrick(req, res){
+//     const brick = brickList.editBrick(req.body);
+//     res.json(brick);
+// }
 
 app.get('/data', getBricks);
 app.get('/data/:id', getBrickInfo);
-app.put('/data/:id', putBrick);
+// app.put('/data/:id', putBrick);
 app.post('/data', postBrick);
 app.get('/bricks', (req, res) => {
     res.json(data);
