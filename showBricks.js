@@ -3,7 +3,7 @@
 import * as data from './bricks.mjs';
 
 export function brickData(){
-    return data.brickz;
+    return data.brickInfo;
 }
 
 export function findBrick(){
