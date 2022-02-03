@@ -46,11 +46,12 @@ async function loadBricks(req, res){
     showBricks(data, el.bricks);
 }
 
-//Sends the clicked item in the list to the basket (Use event.target)
+// Sends the clicked item in the list to the basket
 function toBasket(event){
     if (event.target.dataset.id != undefined){
         console.log(event.target.dataset.id);
-        addToBasket();
+        let id = event.target.dataset.id;
+        addToBasket(id);
     } else {
         console.log(Error("Brick not found"));
     }
@@ -65,7 +66,7 @@ function prepareListeners(){
     el.bricks.addEventListener('click', toBasket);
 }
 
-// Is called by eventListener at bottom of file. Calls other functions
+// This is called by the eventListener at bottom of file. Calls other functions
 function pageLoaded(){
     prepareHandles();
     loadBricks();
