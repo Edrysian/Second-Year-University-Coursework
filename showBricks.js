@@ -1,6 +1,16 @@
 'use strict';
 
-import * as data from './bricks.mjs'; // Gets the JSON data from bricks.mjs
+// import { brickInfo } from "./bricks.mjs";
+
+async function fetchBrickData(){
+    const response = await fetch('/bricks');
+    if (response.ok){
+        const data = await response.json();
+        report(data);
+    } else {
+        report('No data', true);
+    }
+}
 
 export function brickData(){
     return data.brickInfo;
@@ -15,3 +25,9 @@ export function findBrick(){
     }
     return null;
 }
+
+function pageLoaded(){
+    fetchBrickData();
+}
+
+window.addEventListener('load', pageLoaded);

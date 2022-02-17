@@ -1,7 +1,7 @@
 'use strict';
 
 // import * as brickList from '../showBricks.js';
-import { brickInfo } from "../bricks.mjs";
+// import { brickInfo } from "../bricks.mjs";
 
 const brickArr = [];
 
@@ -19,7 +19,7 @@ function basketItems (id){
     if (id = brickInfo.id){
         console.log(brickInfo.name);
     }
-    let addItem = brickArr.push(id);
+    brickArr.push(id);
     console.log(brickArr, 'Works!')
 }
 

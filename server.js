@@ -1,9 +1,10 @@
 'use strict';
 
 import express from 'express';
+import {brickInfo} from './bricks.mjs'; // Gets the JSON data from bricks.mjs
 
 const app = express();
-import * as brickList from './showBricks.js';
+// import * as brickList from './showBricks.js';
 
 app.use(express.static('client'));
 console.log("Server Running");
@@ -36,7 +37,7 @@ app.get('/data/:id', getBrickInfo);
 // app.put('/data/:id', putBrick);
 app.post('/data', postBrick);
 app.get('/bricks', (req, res) => {
-    res.json(data);
+    res.json(brickInfo);
 });
 
 app.listen(8080);

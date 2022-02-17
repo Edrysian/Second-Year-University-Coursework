@@ -35,7 +35,7 @@ function showBricks(data, where){
 
 // Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for "removeContent"  
 async function loadBricks(req, res){
-    const response = await fetch('/data');
+    const response = await fetch('/bricks');
     let data;
     if (response.ok){
         data = await response.json();
