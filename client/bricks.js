@@ -1,9 +1,7 @@
 'use strict';
 
-import { addToBasket } from "./basket.js";
-
 const el = {};
-
+const basket = [];
 
 // Remove all of the content on the specified area
 function removeContent(content){
@@ -40,7 +38,7 @@ async function loadBricks(req, res){
     if (response.ok){
         data = await response.json();
     } else {
-        data = [{name: 'Could not load brick. Please try again!'}]
+        data = [{name: 'Could not load bricks. Please try again!'}]
     }
     removeContent(el.bricks);
     showBricks(data, el.bricks);
@@ -50,20 +48,48 @@ async function loadBricks(req, res){
 function toBasket(event){
     if (event.target.dataset.id != undefined){
         console.log(event.target.dataset.id);
-        let id = event.target.dataset.id;
-        addToBasket(id);
-    } else {
-        console.log(Error("Brick not found"));
-    }
+//         let id = event.target.dataset.id;
+//         addToBasket(id);
+     }// else {
+//         console.log(Error("Brick not found"));
+//     }
 }
 
-// Gets hold of the element '#bricks' from bricks.html
+// Create a function that removes all the elements on the page and replaces them with elements for the basket.
+// Removing the brick elements from the page
+function rmvBrickElem(){
+    const filter = document.getElementById('filter');
+    filter.remove();
+    const bricks = document.getElementById('bricks');
+    bricks.remove();
+    addBasketElem();
+}
+
+// Adding the basket elements to the page
+function addBasketElem(){
+    console.log("Where da local storage at yo?!?!")
+}
+
+// Adding the basket to local storage
+function storeLocal(item){
+    // Build an object to be stored in the array
+    const itemID = item.target.dataset.id;
+    const quantity = 1;
+    let obj = {itemID, quantity};
+    basket.push(obj);
+    const stringifiedBasket = JSON.stringify(basket);
+    localStorage.setItem("basket", stringifiedBasket);
+}
+
+// Gets hold of the elements from bricks.html
 function prepareHandles(){
     el.bricks = document.querySelector('#bricks');
+    el.basket = document.querySelector('#basket');
 }
 
 function prepareListeners(){
-    el.bricks.addEventListener('click', toBasket);
+    el.bricks.addEventListener('click', storeLocal);
+    el.basket.addEventListener('click', rmvBrickElem);
 }
 
 // This is called by the eventListener at bottom of file. Calls other functions
@@ -72,6 +98,5 @@ function pageLoaded(){
     loadBricks();
     prepareListeners();
 }
-
 
 window.addEventListener('load', pageLoaded);
