@@ -1,5 +1,5 @@
 'use strict';
 
-export function addToBasket (){
-    console.log("Added to basket");
+export function addToBasket() {
+  console.log('Added to basket');
 }

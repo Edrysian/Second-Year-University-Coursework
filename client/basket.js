@@ -5,9 +5,9 @@
 
 const brickArr = [];
 
-export function addToBasket (id){
-    console.log(id);
-    basketItems(id);
+export function addToBasket(id) {
+  console.log(id);
+  basketItems(id);
 }
 
 /**
@@ -15,15 +15,15 @@ export function addToBasket (id){
  * I need to figure out how to get it to add 1 new list element
  * each time a new item is added to the basket.
 */
-function basketItems (id){
-    if (id = brickInfo.id){
-        console.log(brickInfo.name);
-    }
-    brickArr.push(id);
-    console.log(brickArr, 'Works!')
+function basketItems(id) {
+  if (id = brickInfo.id) {
+    console.log(brickInfo.name);
+  }
+  brickArr.push(id);
+  console.log(brickArr, 'Works!');
 }
 
-function pageLoaded(){
+function pageLoaded() {
 
 }
 
