@@ -2,6 +2,7 @@
 
 const el = {};
 const basket = [];
+const purchases = [];
 
 // Remove all of the content on the specified area
 function removeContent(content){
@@ -44,30 +45,20 @@ async function loadBricks(req, res){
     showBricks(data, el.bricks);
 }
 
-// Sends the clicked item in the list to the basket
-function toBasket(event){
-    if (event.target.dataset.id != undefined){
-        console.log(event.target.dataset.id);
-//         let id = event.target.dataset.id;
-//         addToBasket(id);
-     }// else {
-//         console.log(Error("Brick not found"));
-//     }
-}
-
 // Create a function that removes all the elements on the page and replaces them with elements for the basket.
 // Removing the brick elements from the page
-function rmvBrickElem(){
+function replaceBrickElems(){
     const filter = document.getElementById('filter');
     filter.remove();
     const bricks = document.getElementById('bricks');
     bricks.remove();
-    addBasketElem();
+    getItem();
+    // Adding the basket elements to the page using data from localStorage
 }
 
-// Adding the basket elements to the page
-function addBasketElem(){
-    console.log("Where da local storage at yo?!?!")
+// Trying to get data from localStorage to then be pushed into a new array. I will use this array of objects to create the list of items that are in the basket
+function getItem(){
+    console.log(basket);
 }
 
 // Adding the basket to local storage
@@ -79,6 +70,22 @@ function storeLocal(item){
     basket.push(obj);
     const stringifiedBasket = JSON.stringify(basket);
     localStorage.setItem("basket", stringifiedBasket);
+
+    /**
+     * Data that you put in localStorage should be turned into JS Object Notation data (JSON data) using the JSON.stringify(data) method.
+     * When you retrieve it from localStorage it is therefore a JSON string.
+     * You convert that back into an object with const data = JSON.parse(stringFromLocalStorage).
+     * Thereafter data is the reconstructed object that you originally stringified
+     */
+}
+
+function loadBasket(){
+    const items = localStorage.getItem("basket");
+    console.log(items);
+    const bsk2 = JSON.parse(items);
+    console.log(bsk2);
+    // TODO: Check what happens on an empty string
+    basket.push(...bsk2);
 }
 
 // Gets hold of the elements from bricks.html
@@ -89,7 +96,7 @@ function prepareHandles(){
 
 function prepareListeners(){
     el.bricks.addEventListener('click', storeLocal);
-    el.basket.addEventListener('click', rmvBrickElem);
+    el.basket.addEventListener('click', replaceBrickElems);
 }
 
 // This is called by the eventListener at bottom of file. Calls other functions
@@ -97,6 +104,7 @@ function pageLoaded(){
     prepareHandles();
     loadBricks();
     prepareListeners();
+    loadBasket();
 }
 
 window.addEventListener('load', pageLoaded);
