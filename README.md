@@ -12,6 +12,14 @@ Repository for my AppEng 2021/22 CW
   * Start to implement API
   * Create page(s) that use API
 * ~~Connect server and client~~
+* ~~Create basket for user to view selected items.~~
+* Show total price of items in the basket.
+  * Show price of 1 individual brick next to each brick and then the total for that individual brick dependent on the user input. (The user can then change this in the basket if they want to change their mind).
+  * To show total price of all items in basket add totalPriceOfBrick for each item in basket together. (totalPriceOfBrick1 + totalPriceOfBrick2 ... = totalBasketPrice).
+* Create a user input for the amount of a bricks that they would like.
+  * Don't have multiple of the same brick in the basket, this is inefficient. Have a number next to each brick that is a user input and shows the number of that brick they want.
+    * Variable to store user input.
+    * Need to take user input and times the price by the input (price * userInput = totalPriceOfBrick).
 * Create a database and store bricks in it.
   * Take pictures of the list of bricks in the instruction manual that I have.
 * Connect the db to the client
@@ -80,12 +88,12 @@ The official document for the coursework is [here](https://docs.google.com/docum
 ### Planned work
 
 * Login button - top left
-* Drop down menus - top middle
+* ~~Drop down menus - top middle~~ Don't do drop down menu's, just have everything visible as it can become tiresome.
   * Our kits
   * Individual Bricks
   * Containers - to store bricks in
 * Set square for each brick
-* Image of brick
+* ~~Image of brick~~ COMPLETED!
 * Quantity entry box
   * Add to basket "quantity"
 * Stock level
