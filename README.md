@@ -30,8 +30,8 @@ The official document for the coursework is [here](https://docs.google.com/docum
 
 ### Core capabilities
 
-* Maintain an inventory of items for sale, and stock levels
-* Shopping cart
+* Maintain ~~an inventory of items for sale~~, and stock levels (SEMI-COMPLETED. Still need to maintain stock levels!)
+* ~~Shopping cart~~ (COMPLETED)
 * Client can place multiples of each brick in their cart for purchase
 * Simulated checkout (not in any detail, assume the payment gateway is a 'black box' which handles all card details etc), and update stock levels
 
