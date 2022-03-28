@@ -5,24 +5,37 @@ Repository for my AppEng 2021/22 CW
 ## ToDo List
 
 * ~~Build a server to be able to host the client~~
+
 * ~~Build the client folder~~
   * ~~Have index.js and similar HTML and CSS files~~
+
 * Create API
   * Think about and design an API for discovering what bricks are for sale
   * Start to implement API
   * Create page(s) that use API
+
 * ~~Connect server and client~~
+
 * ~~Create basket for user to view selected items.~~
+
+* Have an "Add to Basket" button that the user can click instead of just clicking the item somewhere.
+  * This will mean that the user knows where to click to add an item to the basket.
+  * Have an alert come up to let the user know that something has been added to the basket?
+
+* Create a user input for the amount of a bricks that they would like.
+  * Create an input box.
+    * Have it recognise the input if input box is clicked out of or `Enter` key pressed.
+  * Store the user input of the box as a variable.
+  * Don't have multiple of the same brick in the basket, this is inefficient. Have a number next to each brick that is a user input and shows the number of the brick(s) they want.
+    * Need to take user input and times the price by the input (`price * userInput = totalPriceOfBrick`).
+
 * Show total price of items in the basket.
   * Show price of 1 individual brick next to each brick and then the total for that individual brick dependent on the user input. (The user can then change this in the basket if they want to change their mind).
-  * To show total price of all items in basket add totalPriceOfBrick for each item in basket together. (totalPriceOfBrick1 + totalPriceOfBrick2 ... = totalBasketPrice).
-* Create a user input for the amount of a bricks that they would like.
-  * Don't have multiple of the same brick in the basket, this is inefficient. Have a number next to each brick that is a user input and shows the number of that brick they want.
-    * Variable to store user input.
-    * Need to take user input and times the price by the input (price * userInput = totalPriceOfBrick).
+  * To show total price of all items in basket add totalPriceOfBrick for each item in basket together. (`totalPriceOfBrick1 + totalPriceOfBrick2 ... = totalBasketPrice`).
+
 * Create a database and store bricks in it.
   * Take pictures of the list of bricks in the instruction manual that I have.
-* Connect the db to the client
+  * Connect the db to the client
 
 ## Coursework
 
