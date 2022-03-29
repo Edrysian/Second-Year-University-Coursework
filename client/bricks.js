@@ -1,47 +1,14 @@
 'use strict';
 
+/** Imports functions from modules.mjs */
+import { removeContent, showBricks } from './modules.mjs';
+
+
+/** Creates an empty JSON object, an empty array and initialises the global variable "data" */
 const el = {};
 const basket = [];
 let data;
 
-
-// Remove all of the content on the specified area
-function removeContent(content) {
-  while (content.firstElementChild) {
-    content.firstElementChild.remove();
-  }
-}
-
-// Creates the list of bricks on "bricks.html"
-function showBricks(data, where) {
-  for (const brick of data) {
-    const li = document.createElement('li');
-    li.textContent = brick.name;
-    li.dataset.id = brick.id;
-
-    const img = document.createElement('img');
-    img.src = brick.image;
-    img.dataset.id = brick.id;
-    li.append(img);
-
-    const name = document.createElement('p');
-    name.src = brick.name;
-    name.dataset.id = brick.id;
-    li.append(name);
-
-    const colour = document.createElement('li');
-    colour.textContent = brick.colour;
-    colour.dataset.id = brick.id;
-    li.append(colour);
-
-    const qty = document.createElement('li');
-    qty.textContent = 1;
-    qty.dataset.id = brick.id;
-    li.append(qty);
-
-    where.append(li);
-  }
-}
 
 // Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for "removeContent"
 async function loadBricks(req, res) {
@@ -55,8 +22,8 @@ async function loadBricks(req, res) {
   showBricks(data, el.bricks);
 }
 
+// Loop over brickInfo and find where the id matches. If it matches return it, if not return undefined.
 function lookUpObject(id) {
-//   loop over brickInfo and find where the id matches. If it matches return it, if not return undefined.
   for (const obj of data) {
     if (obj.id == id) {
       return obj;
@@ -74,7 +41,7 @@ function replaceBrickElems() {
   const bricks = document.getElementById('bricks');
   bricks.innerHTML = '';
 
-  console.log(basket);
+  console.log('basket', basket);
   // Adding the basket elements to the page using data from localStorage
   for (const obj of basket) {
     const object = lookUpObject(obj.itemID);
@@ -97,10 +64,10 @@ function replaceBrickElems() {
     colour.dataset.id = object.id;
     li.append(colour);
 
-    const qty = document.createElement('li');
-    qty.textContent = 1;
-    qty.dataset.id = object.id;
-    li.append(qty);
+    const bsktQty = document.createElement('input');
+    bsktQty.placeholder = 1;
+    bsktQty.dataset.id = object.id;
+    li.append(bsktQty);
 
     where.append(li);
   }
@@ -127,28 +94,30 @@ function storeLocal(item) {
      */
 }
 
+/** Put items that the user clicks into an array to act as a localStorage basket so that the information can then be retrieved and used to create the proper basket */
 function loadBasket() {
   const items = localStorage.getItem('basket');
   console.log('items', items);
-  const bsk2 = JSON.parse(items);
+  const bsk2 = JSON.parse(items); /** Turns the stringified data back to regular JSON data */
   console.log('Bsk2', bsk2);
   if (items != null) {
     basket.push(...bsk2);
   }
 }
 
-// Gets hold of the elements from bricks.html
+/** Gets hold of the elements from bricks.html */
 function prepareHandles() {
   el.bricks = document.querySelector('#bricks');
   el.bsktBtn = document.querySelector('#bsktBtn');
 }
 
+/** Prepares eventListeners for the page */
 function prepareListeners() {
   el.bricks.addEventListener('click', storeLocal);
   el.bsktBtn.addEventListener('click', replaceBrickElems);
 }
 
-// This is called by the eventListener at bottom of file. Calls other functions
+/** This is called by the eventListener at bottom of file. Calls other functions */
 function pageLoaded() {
   prepareHandles();
   loadBricks();
