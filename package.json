@@ -23,7 +23,7 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "eslint": "^8.10.0",
+    "eslint": "^8.12.0",
     "eslint-config-portsoc": "^1.0.0"
   },
   "eslintConfig": {
