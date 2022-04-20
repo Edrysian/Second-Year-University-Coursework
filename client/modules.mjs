@@ -40,6 +40,8 @@ export function showBricks(data, where) {
     btn.dataset.id = brick.id;
     li.append(btn);
 
-    where.append(li);
+    if (where != null) {
+      where.append(li);
+    }
   }
 }
