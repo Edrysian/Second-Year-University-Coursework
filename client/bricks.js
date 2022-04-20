@@ -7,18 +7,36 @@ import { removeContent, showBricks } from './modules.mjs';
 /** Creates an empty JSON object, an empty array and initialises the global variable "data" */
 const el = {};
 const basket = [];
+// const fltrBasket = [];
 let data;
 
 /** Filters the basket so that multiples of the same brick don't show up */
-function filterBasket(id) {
-  basket.filter(brick => brick.id === id);
-  console.log('Filtered', basket);
-}
+// function filterBasket(id) {
+//   console.log('ID', id);
+//   const fltrd = fltrBasket.filter(brick => brick.id === id);
+//   console.log('FLTRD', fltrd);
+//   console.log('fltrBasket.filter', fltrBasket.filter(brick => brick.id === id));
+//   basket.push(...fltrd);
+
+
+//   // for (const item of fltrBasket) {
+//   //   if (id !== item.id) {
+//   //     console.log('ITERATION: ');
+
+//   //     console.log('The ID is:', id);
+//   //     return basket.filter(brick => brick.id === id);
+//   //     // console.log('bsktFltr', bsktFltr);
+
+//   //     // basket.push(...bsktFltr);
+//   //   }
+//   //   // console.log('The ID is: LOOK HERE: ', id);
+//   // }
+// }
 
 /** Changes the qty number when a duplicate item is found */
 
 /** Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for removeContent() and showBricks() which are imported from modules.mjs */
-async function loadBricks(req, res) {
+async function loadBricks() {
   const response = await fetch('/bricks');
   if (response.ok) {
     data = await response.json();
@@ -50,12 +68,7 @@ function replaceBrickElems() {
   const bricks = document.getElementById('bricks');
   bricks.innerHTML = '';
 
-  console.log('basket', basket);
-
-  // const fltrdBskt = basket.filter(id => id === bricks.id);
-
-  // const fltrdBskt = basket.filter(filterBasket(obj));
-  // console.log('filtered', fltrdBskt);
+  // console.log('basket', basket);
 
   /** Adding the basket elements to the page using data from localStorage */
   for (const obj of basket) {
@@ -99,9 +112,6 @@ function storeLocal(item) {
   const obj = { itemID, name, img, colour, quantity };
   basket.push(obj);
   /** Filter the basket */
-  // const fltrdBskt = basket.filter(id => id === item.id);
-  basket.filter(filterBasket);
-  console.log('Filtered', basket);
 
   /** Stringify the basket so that it can be stored in local storage */
   const stringifiedBasket = JSON.stringify(basket);
@@ -119,14 +129,34 @@ function storeLocal(item) {
 function loadBasket() {
   const items = localStorage.getItem('basket');
   console.log('items', items);
-  const bsk2 = JSON.parse(items); /** Turns the stringified data back to regular JSON data */
-  bsk2.filter(filterBasket);
+  const bsk2 = JSON.parse(items);
   console.log('Bsk2', bsk2);
-  console.log('Filtered', bsk2);
   if (items != null) {
     basket.push(...bsk2);
   }
 }
+// function loadBasket() {
+//   const items = localStorage.getItem('basket');
+//   console.log('items', items);
+//   const bsk2 = JSON.parse(items); /** Turns the stringified data back to regular JSON data */
+//   console.log('Bsk2', bsk2);
+
+//   if (items != null) {
+//     fltrBasket.push(...bsk2);
+//     // console.log('basket.itemID: ', Object.keys(basket));
+
+//     for (let i = 0; i <= fltrBasket.length; i += 1) {
+//       // console.log('fltrBasket[i].itemID ', fltrBasket[i].itemID);
+//       console.log('i', i);
+//       if (fltrBasket[i] !== undefined) {
+//         filterBasket(i);
+//       }
+//     }
+//   }
+//   console.log('basket', basket);
+//   console.log('fltrBasket', fltrBasket);
+//   console.log('bsk2', bsk2);
+// }
 
 /** Gets hold of the elements from bricks.html */
 function prepareHandles() {
