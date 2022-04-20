@@ -43,7 +43,9 @@ async function loadBricks() {
   } else {
     data = [{ name: 'Could not load bricks. Please try again!' }];
   }
-  removeContent(el.bricks);
+  if (el.bricks != null) {
+    removeContent(el.bricks);
+  }
   showBricks(data, el.bricks);
 }
 
@@ -60,10 +62,21 @@ function lookUpObject(id) {
 function replaceBrickElems() {
   const where = document.getElementById('bricks');
 
-  const filter = document.getElementById('filter');
-  if (filter != null) {
-    filter.remove();
+  const brickFilter = document.getElementById('brickFilter');
+  if (brickFilter != null) {
+    brickFilter.remove();
   }
+
+  const a = document.createElement('a');
+
+  const purchase = document.createElement('li');
+  purchase.textContent = 'Purchase Items';
+
+  a.append(purchase);
+  a.href = 'checkout.html';
+
+  const header = document.getElementById('header');
+  header.append(a);
 
   const bricks = document.getElementById('bricks');
   bricks.innerHTML = '';
@@ -99,6 +112,7 @@ function replaceBrickElems() {
 
     where.append(li);
   }
+  console.log('basket', basket);
 }
 
 /** Adding the basket to local storage */
@@ -111,7 +125,6 @@ function storeLocal(item) {
   const quantity = 1; // TODO: Need to change this to become a user input
   const obj = { itemID, name, img, colour, quantity };
   basket.push(obj);
-  /** Filter the basket */
 
   /** Stringify the basket so that it can be stored in local storage */
   const stringifiedBasket = JSON.stringify(basket);
@@ -166,7 +179,9 @@ function prepareHandles() {
 
 /** Prepares eventListeners for the page */
 function prepareListeners() {
-  el.bricks.addEventListener('click', storeLocal);
+  if (el.bricks != null) {
+    el.bricks.addEventListener('click', storeLocal);
+  }
   el.bsktBtn.addEventListener('click', replaceBrickElems);
 }
 
