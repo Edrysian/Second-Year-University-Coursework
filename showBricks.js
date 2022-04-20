@@ -2,6 +2,8 @@
 
 // import { brickInfo } from "./bricks.mjs";
 
+let data;
+
 async function fetchBrickData() {
   const response = await fetch('/bricks');
   if (response.ok) {
