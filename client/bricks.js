@@ -9,6 +9,7 @@ const el = {};
 const basket = [];
 // const fltrBasket = [];
 let data;
+let amount = 1;
 
 /** Filters the basket so that multiples of the same brick don't show up */
 // function filterBasket(id) {
@@ -52,7 +53,7 @@ async function loadBricks() {
 /** Loop over brickInfo and find where the id matches. If it matches return it, if not return undefined. */
 function lookUpObject(id) {
   for (const obj of data) {
-    if (obj.id == id) {
+    if (obj.id === id) {
       return obj;
     }
   }
@@ -79,7 +80,7 @@ function replaceBrickElems() {
   header.append(a);
 
   const bricks = document.getElementById('bricks');
-  bricks.innerHTML = '';
+  bricks.textContent = '';
 
   // console.log('basket', basket);
 
@@ -106,7 +107,7 @@ function replaceBrickElems() {
     li.append(colour);
 
     const bsktQty = document.createElement('input');
-    bsktQty.placeholder = 1;
+    bsktQty.placeholder = obj.quantity;
     bsktQty.dataset.id = object.id;
     li.append(bsktQty);
 
@@ -118,13 +119,17 @@ function replaceBrickElems() {
 /** Adding the basket to local storage */
 function storeLocal(item) {
   /** Build an object to be stored in the array */
-  const itemID = item.target.dataset.id;
-  const img = item.target.image;
-  const name = item.target.name;
-  const colour = item.target.colour;
+  const itemID = Number(item.target.dataset.id);
   const quantity = 1; // TODO: Need to change this to become a user input
-  const obj = { itemID, name, img, colour, quantity };
-  basket.push(obj);
+
+  const search = basket.find(item => item.itemID === itemID);
+  if (search) {
+    console.log('yep');
+    search.quantity += quantity;
+  } else {
+    const obj = { itemID, quantity };
+    basket.push(obj);
+  }
 
   /** Stringify the basket so that it can be stored in local storage */
   const stringifiedBasket = JSON.stringify(basket);
