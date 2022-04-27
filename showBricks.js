@@ -19,9 +19,9 @@ export function brickData() {
 }
 
 // Gets the id of the brick and temporarily stores it as 'data'
-export function findBrick() {
+export function findBrick(id) {
   for (const brick of bricks) {
-    if (brick.id = id) {
+    if (brick.id === id) {
       return data;
     }
   }

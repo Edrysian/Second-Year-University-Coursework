@@ -1,40 +1,15 @@
 'use strict';
 
-/** Imports functions from modules.mjs */
-import { removeContent, showBricks } from './modules.mjs';
+/** Imports functions and variables from modules.mjs */
+import { basket, removeContent, showBricks, storeLocal, loadBasket } from './modules.mjs';
 
 
 /** Creates an empty JSON object, an empty array and initialises the global variable "data" */
 const el = {};
-const basket = [];
-// const fltrBasket = [];
+// export const basket = [];
 let data;
-let amount = 1;
+let count = 0;
 
-/** Filters the basket so that multiples of the same brick don't show up */
-// function filterBasket(id) {
-//   console.log('ID', id);
-//   const fltrd = fltrBasket.filter(brick => brick.id === id);
-//   console.log('FLTRD', fltrd);
-//   console.log('fltrBasket.filter', fltrBasket.filter(brick => brick.id === id));
-//   basket.push(...fltrd);
-
-
-//   // for (const item of fltrBasket) {
-//   //   if (id !== item.id) {
-//   //     console.log('ITERATION: ');
-
-//   //     console.log('The ID is:', id);
-//   //     return basket.filter(brick => brick.id === id);
-//   //     // console.log('bsktFltr', bsktFltr);
-
-//   //     // basket.push(...bsktFltr);
-//   //   }
-//   //   // console.log('The ID is: LOOK HERE: ', id);
-//   // }
-// }
-
-/** Changes the qty number when a duplicate item is found */
 
 /** Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for removeContent() and showBricks() which are imported from modules.mjs */
 async function loadBricks() {
@@ -59,7 +34,7 @@ function lookUpObject(id) {
   }
 }
 
-/** Create a function that removes all the elements on the page and replaces them with elements for the basket. */
+/** Create a function that removes all the elements on the page and replaces them with elements for the basket & Checkout. */
 function replaceBrickElems() {
   const where = document.getElementById('bricks');
 
@@ -68,22 +43,25 @@ function replaceBrickElems() {
     brickFilter.remove();
   }
 
-  const a = document.createElement('a');
-
-  const purchase = document.createElement('li');
-  purchase.textContent = 'Purchase Items';
-
-  a.append(purchase);
-  a.href = 'checkout.html';
-
-  const header = document.getElementById('header');
-  header.append(a);
-
   const bricks = document.getElementById('bricks');
-  bricks.textContent = '';
+  if (bricks !== null) {
+    bricks.textContent = '';
+  }
+  /** Stops code creating multiple copies of the same element */
+  if (count < 1) {
+    count = 2;
+    const a = document.createElement('a');
+    a.href = 'checkout.html';
 
-  // console.log('basket', basket);
+    const purchase = document.createElement('li');
+    purchase.textContent = 'Checkout';
+    a.append(purchase);
 
+    const header = document.getElementById('header');
+    if (bricks.textContent === '') {
+      header.append(a);
+    }
+  }
   /** Adding the basket elements to the page using data from localStorage */
   for (const obj of basket) {
     const object = lookUpObject(obj.itemID);
@@ -116,86 +94,88 @@ function replaceBrickElems() {
   console.log('basket', basket);
 }
 
-/** Adding the basket to local storage */
-function storeLocal(item) {
-  /** Build an object to be stored in the array */
-  const itemID = Number(item.target.dataset.id);
-  const quantity = 1; // TODO: Need to change this to become a user input
+// /** Adding the basket to local storage */
+// function storeLocal(item) {
+//   /** Build an object to be stored in the array */
+//   const itemID = Number(item.target.dataset.id);
+//   const quantity = 1; // TODO: Need to change this to become a user input
+//   const search = basket.find(item => item.itemID === itemID); /** Compares the item to all items in the basket to see if it already exists */
 
-  const search = basket.find(item => item.itemID === itemID);
-  if (search) {
-    console.log('yep');
-    search.quantity += quantity;
-  } else {
-    const obj = { itemID, quantity };
-    basket.push(obj);
-  }
+//   if (search) { /** If the item is already in the basket this adds the current quantity to the already existing quantity */
+//     console.log('Added');
+//     search.quantity += quantity;
+//   } else { /** If the item is not already in the basket, this creates an object for the item and updates the basket to include the new object */
+//     const obj = { itemID, quantity };
+//     console.log('Added to basket');
+//     basket.push(obj);
+//   }
+//   /** Stringify the basket so that it can be stored in local storage */
+//   const stringifiedBasket = JSON.stringify(basket);
+//   localStorage.setItem('basket', stringifiedBasket);
 
-  /** Stringify the basket so that it can be stored in local storage */
-  const stringifiedBasket = JSON.stringify(basket);
-  localStorage.setItem('basket', stringifiedBasket);
-
-  /**
-     * Data that you put in localStorage should be turned into JS Object Notation data (JSON data) using the JSON.stringify(data) method.
-     * When you retrieve it from localStorage it is therefore a JSON string.
-     * You convert that back into an object with const data = JSON.parse(stringFromLocalStorage).
-     * Thereafter data is the reconstructed object that you originally stringified
-     */
-}
+//   /**
+//      * Data that you put in localStorage should be turned into JS Object Notation data (JSON data) using the JSON.stringify(data) method.
+//      * When you retrieve it from localStorage it is therefore a JSON string.
+//      * You convert that back into an object with const data = JSON.parse(stringFromLocalStorage).
+//      * Thereafter data is the reconstructed object that you originally stringified
+//      */
+// }
 
 /** Put items that the user clicks into an array to act as a localStorage basket so that the information can then be retrieved and used to create the proper basket */
-function loadBasket() {
-  const items = localStorage.getItem('basket');
-  console.log('items', items);
-  const bsk2 = JSON.parse(items);
-  console.log('Bsk2', bsk2);
-  if (items != null) {
-    basket.push(...bsk2);
-  }
-}
 // function loadBasket() {
 //   const items = localStorage.getItem('basket');
 //   console.log('items', items);
-//   const bsk2 = JSON.parse(items); /** Turns the stringified data back to regular JSON data */
+//   const bsk2 = JSON.parse(items);
 //   console.log('Bsk2', bsk2);
-
 //   if (items != null) {
-//     fltrBasket.push(...bsk2);
-//     // console.log('basket.itemID: ', Object.keys(basket));
-
-//     for (let i = 0; i <= fltrBasket.length; i += 1) {
-//       // console.log('fltrBasket[i].itemID ', fltrBasket[i].itemID);
-//       console.log('i', i);
-//       if (fltrBasket[i] !== undefined) {
-//         filterBasket(i);
-//       }
-//     }
+//     basket.push(...bsk2);
 //   }
-//   console.log('basket', basket);
-//   console.log('fltrBasket', fltrBasket);
-//   console.log('bsk2', bsk2);
 // }
 
 /** Gets hold of the elements from bricks.html */
 function prepareHandles() {
   el.bricks = document.querySelector('#bricks');
   el.bsktBtn = document.querySelector('#bsktBtn');
+  // el.addItem = document.querySelector('#addItem');
+  // el.addToBskt = document.querySelector('#addToBskt');
+  // console.log('el.addToBskt', el.addToBskt);
 }
+
+// function addBsktLstnr() {
+//   const child = el.bricks.querySelector('.addItem');
+//   console.log('child', child);
+//   console.log('el.addItem', el.addItem);
+//   console.log('el.bricks.firstChild', el.bricks.firstChild);
+// }
 
 /** Prepares eventListeners for the page */
 function prepareListeners() {
   if (el.bricks != null) {
     el.bricks.addEventListener('click', storeLocal);
   }
+  // addBsktLstnr();
+
+  // el.addToBskt.addEventListener('click', storeLocal);
+  /** NEED TO MAKE THIS ONLY GO ONTO THE BUTTONS.
+   * INSTEAD OF el.bricks, IT NEEDS TO BE SOMETHING ALONG THE LINES OF
+   * el.bsktBtn
+   */
+
   el.bsktBtn.addEventListener('click', replaceBrickElems);
 }
 
 /** This is called by the eventListener at bottom of file. Calls other functions */
 function pageLoaded() {
-  prepareHandles();
   loadBricks();
-  prepareListeners();
   loadBasket();
+  prepareHandles();
+  prepareListeners();
 }
+
+// Might have to create a new function to add event listeners to the buttons.
+// Iterate over the buttons to add an Event Listener
+// Need to apply event listener after buttons are created.
+// Functions are called in order from top to bottom (within a function such as pageLoaded)!!!
+// If need help just ask again
 
 window.addEventListener('load', pageLoaded);
