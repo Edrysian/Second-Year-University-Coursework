@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="index.css">
-<script src="bricks.js" type="module"></script>
+<script src="checkout.js" type="module"></script>
 <title>Individual Bricks</title>
 
 <header>
@@ -20,8 +20,46 @@
     <li><a id="contain" href = 'contain.html'>Containers</a></li>
   </ul>
 
-  <ul id="checkout">
-    <li>Checkout elements will go here!</li>
-  </ul>
+  <div id="deliveryInfo">
+    <h2 id="deliveryHeading">Delivery</h2>
+    <form id="deliveryForm" autocomplete="off">
+      <ul id="addressInfo">
+        <li id="fName">First Name: <input type="text" placeholder="First Name" required autocomplete="off"></li>
+        <li id="lName">Last Name: <input type="text" placeholder="Last Name" required autocomplete="off"></li>
+        <li id="address1">Address Line 1: <input type="text" placeholder="Address Line 1" required autocomplete="off"></li>
+        <li id="address2">Address Line 2: <input type="text" placeholder="Address Line 2" required autocomplete="off"></li>
+        <li id="county">County: <input type="text" placeholder="County" required autocomplete="off"></li>
+        <li id="postcode">Postcode: <input type="text" placeholder="Postcode" required autocomplete="off"></li>
+      </ul>
+      <input id="deliveryConfirmation" type="submit" value="Submit Delivery Details">
+      <!-- <input id="deliveryConfirmation" type="submit" value="Proceed to Contact Details"> -->
+    </form>
+  </div>
+
+  <div id="contactInfo">
+    <h2 id="contactHeading">Contact</h2>
+    <!-- <button id="back2delivery">Edit Delivery Details</button> -->
+    <form id="contactForm">
+      <ul id="contactDetails">
+        <li id="email">Email: <input type="email" placeholder="Email" required autocomplete="off"></li>
+        <li id="phone">Phone Number: <input type="tel" placeholder="Phone Number" autocomplete="off"></li>
+      </ul>
+      <input type="submit" value="Submit Contact Details">
+      <!-- <input type="submit" value="Proceed to Payment"> --> <!-- Keeping this here for now as will need it in the future -->
+    </form> 
+  </div>
+
+  <div id="payment">
+    <h2 id="paymentHeading">Payment</h2>
+    <!-- <button id="back2contact">Edit Contact Details</button> --> <!-- Keeping this here for now as will need it in the future -->
+    <button id="paymentBtn">PAY NOW!</button>
+  </div>
+
+  <div id="checkoutBskt">
+    <h2>Basket:</h2>
+    <ul id="bricks">
+      <li>Bricks <i>might</i> appear here</li>
+    </ul>
+  </div>
 </body>
 </html>
