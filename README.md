@@ -45,7 +45,7 @@ The official document for the coursework is [here](https://docs.google.com/docum
 
 * Maintain ~~an inventory of items for sale, and~~ stock levels (SEMI-COMPLETED. Still need to maintain stock levels!)
 * ~~Shopping cart~~ (COMPLETED)
-* Client can place multiples of each brick in their cart for purchase ***(TECHNICALLY COMPLETED. COPIES OF THE BRICKS SHOW UP INSTEAD OF UPDATING THE QTY VALUE).***
+* ~~Client can place multiples of each brick in their cart for purchase~~ (COMPLETED)
 * Simulated checkout (not in any detail, assume the payment gateway is a 'black box' which handles all card details etc), and update stock levels
 
 ### Additional Features
