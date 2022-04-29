@@ -2,9 +2,9 @@
 
 import express from 'express';
 import { brickInfo } from './bricks.mjs'; // Gets the JSON data from bricks.mjs
+import * as brickList from './showBricks.js';
 
 const app = express();
-// import * as brickList from './showBricks.js';
 
 app.use(express.static('client'));
 console.log('Server Running');
