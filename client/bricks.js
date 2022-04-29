@@ -1,17 +1,16 @@
 'use strict';
 
 /** Imports functions and variables from modules.mjs */
-import { basket, removeContent, showBricks, storeLocal, loadBasket } from './modules.mjs';
+import { basket, removeContent, brickElems, storeLocal, loadBasket } from './modules.mjs';
 
 
 /** Creates an empty JSON object, an empty array and initialises the global variable "data" */
 const el = {};
-// export const basket = [];
 let data;
 let count = 0;
 
 
-/** Fetches the brick data from bricks.mjs via showBricks.js and specifies the area for removeContent() and showBricks() which are imported from modules.mjs */
+/** Fetches the brick data from bricks.mjs and specifies the area for removeContent() and brickElems() which are imported from modules.mjs */
 async function loadBricks() {
   const response = await fetch('/bricks');
   if (response.ok) {
@@ -22,7 +21,7 @@ async function loadBricks() {
   if (el.bricks != null) {
     removeContent(el.bricks);
   }
-  showBricks(data, el.bricks);
+  brickElems(data, el.bricks);
 }
 
 /** Loop over brickInfo and find where the id matches. If it matches return it, if not return undefined. */
@@ -93,44 +92,6 @@ function replaceBrickElems() {
   }
   console.log('basket', basket);
 }
-
-// /** Adding the basket to local storage */
-// function storeLocal(item) {
-//   /** Build an object to be stored in the array */
-//   const itemID = Number(item.target.dataset.id);
-//   const quantity = 1; // TODO: Need to change this to become a user input
-//   const search = basket.find(item => item.itemID === itemID); /** Compares the item to all items in the basket to see if it already exists */
-
-//   if (search) { /** If the item is already in the basket this adds the current quantity to the already existing quantity */
-//     console.log('Added');
-//     search.quantity += quantity;
-//   } else { /** If the item is not already in the basket, this creates an object for the item and updates the basket to include the new object */
-//     const obj = { itemID, quantity };
-//     console.log('Added to basket');
-//     basket.push(obj);
-//   }
-//   /** Stringify the basket so that it can be stored in local storage */
-//   const stringifiedBasket = JSON.stringify(basket);
-//   localStorage.setItem('basket', stringifiedBasket);
-
-//   /**
-//      * Data that you put in localStorage should be turned into JS Object Notation data (JSON data) using the JSON.stringify(data) method.
-//      * When you retrieve it from localStorage it is therefore a JSON string.
-//      * You convert that back into an object with const data = JSON.parse(stringFromLocalStorage).
-//      * Thereafter data is the reconstructed object that you originally stringified
-//      */
-// }
-
-/** Put items that the user clicks into an array to act as a localStorage basket so that the information can then be retrieved and used to create the proper basket */
-// function loadBasket() {
-//   const items = localStorage.getItem('basket');
-//   console.log('items', items);
-//   const bsk2 = JSON.parse(items);
-//   console.log('Bsk2', bsk2);
-//   if (items != null) {
-//     basket.push(...bsk2);
-//   }
-// }
 
 /** Gets hold of the elements from bricks.html */
 function prepareHandles() {
