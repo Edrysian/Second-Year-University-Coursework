@@ -20,7 +20,7 @@
   "homepage": "https://github.com/UP938769/AppEngCW#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   },
   "devDependencies": {
     "eslint": "^8.12.0",

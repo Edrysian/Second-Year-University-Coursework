@@ -1,13 +1,13 @@
 'use strict';
 
 /** Imports functions and variables from modules.mjs */
-import { basket, removeContent, brickElems, storeLocal, loadBasket } from './modules.mjs';
+import { basket, removeContent, brickElems, loadBasket, addLocal, rmvLocal } from './modules.mjs';
 
 
 /** Creates an empty JSON object, an empty array and initialises the global variable "data" */
 const el = {};
 let data;
-let count = 0;
+let checkoutElems = false;
 
 
 /** Fetches the brick data from bricks.mjs and specifies the area for removeContent() and brickElems() which are imported from modules.mjs */
@@ -47,8 +47,8 @@ function replaceBrickElems() {
     bricks.textContent = '';
   }
   /** Stops code creating multiple copies of the same element */
-  if (count < 1) {
-    count = 2;
+  if (checkoutElems === false) {
+    checkoutElems = true;
     const a = document.createElement('a');
     a.href = 'checkout.html';
 
@@ -83,10 +83,24 @@ function replaceBrickElems() {
     colour.dataset.id = object.id;
     li.append(colour);
 
+    const addBtn = document.createElement('button');
+    addBtn.textContent = 'Add';
+    addBtn.dataset.id = object.id;
+    addBtn.addEventListener('click', addLocal);
+
+    li.append(addBtn);
+
     const bsktQty = document.createElement('input');
     bsktQty.placeholder = obj.quantity;
     bsktQty.dataset.id = object.id;
     li.append(bsktQty);
+
+    const rmvBtn = document.createElement('button');
+    rmvBtn.textContent = 'Remove';
+    rmvBtn.dataset.id = object.id;
+    rmvBtn.addEventListener('click', rmvLocal);
+
+    li.append(rmvBtn);
 
     where.append(li);
   }
@@ -97,31 +111,10 @@ function replaceBrickElems() {
 function prepareHandles() {
   el.bricks = document.querySelector('#bricks');
   el.bsktBtn = document.querySelector('#bsktBtn');
-  // el.addItem = document.querySelector('#addItem');
-  // el.addToBskt = document.querySelector('#addToBskt');
-  // console.log('el.addToBskt', el.addToBskt);
 }
-
-// function addBsktLstnr() {
-//   const child = el.bricks.querySelector('.addItem');
-//   console.log('child', child);
-//   console.log('el.addItem', el.addItem);
-//   console.log('el.bricks.firstChild', el.bricks.firstChild);
-// }
 
 /** Prepares eventListeners for the page */
 function prepareListeners() {
-  if (el.bricks != null) {
-    el.bricks.addEventListener('click', storeLocal);
-  }
-  // addBsktLstnr();
-
-  // el.addToBskt.addEventListener('click', storeLocal);
-  /** NEED TO MAKE THIS ONLY GO ONTO THE BUTTONS.
-   * INSTEAD OF el.bricks, IT NEEDS TO BE SOMETHING ALONG THE LINES OF
-   * el.bsktBtn
-   */
-
   el.bsktBtn.addEventListener('click', replaceBrickElems);
 }
 
@@ -132,11 +125,5 @@ function pageLoaded() {
   prepareHandles();
   prepareListeners();
 }
-
-// Might have to create a new function to add event listeners to the buttons.
-// Iterate over the buttons to add an Event Listener
-// Need to apply event listener after buttons are created.
-// Functions are called in order from top to bottom (within a function such as pageLoaded)!!!
-// If need help just ask again
 
 window.addEventListener('load', pageLoaded);

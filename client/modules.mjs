@@ -3,6 +3,7 @@
 export const basket = [];
 
 /** Functions for bricks.js */
+
 /** Remove all of the content on the specified area to make sure that the brickList can go where I have told it too */
 export function removeContent(content) {
   while (content.firstElementChild) {
@@ -13,26 +14,30 @@ export function removeContent(content) {
 /** Creates the list of bricks on "bricks.html" */
 export function brickElems(data, where) {
   for (const brick of data) {
-    // const div = document.createElement('div');
-    // div.dataset.id = brick.id;
-
     const li = document.createElement('li');
     li.textContent = brick.name;
     li.dataset.id = brick.id;
     // div.append(li);
 
+    const div = document.createElement('div');
+    div.id = brick.id;
+    div.dataset.id = brick.id;
+    li.append(div);
+
     const img = document.createElement('img');
+    img.id = 'image';
     img.src = brick.image;
     img.dataset.id = brick.id;
-    li.append(img);
+    div.append(img);
 
     const colour = document.createElement('li');
+    colour.id = 'colour';
     colour.textContent = brick.colour;
     colour.dataset.id = brick.id;
     li.append(colour);
 
     const qty = document.createElement('input');
-    qty.placeholder = 'Quantity: 1';
+    qty.placeholder = 'Quantity: 1'; /** This doesn't work currently. I need to change it to save the user input */
     qty.type = 'number';
     qty.dataset.id = brick.id;
     qty.id = 'usrInput';
@@ -41,10 +46,11 @@ export function brickElems(data, where) {
 
     const btn = document.createElement('button');
     btn.textContent = 'Add to Basket';
-    btn.classList.add('addToBskt');
     btn.dataset.id = brick.id;
     btn.id = 'addItem';
     // btn.addEventListener('click', btnEvntLsnr());
+    btn.addEventListener('click', storeLocal);
+
     li.append(btn);
 
     if (where != null) {
@@ -55,9 +61,9 @@ export function brickElems(data, where) {
 }
 
 /** Adding the basket to local storage */
-export function storeLocal(item) {
+export function storeLocal(event) {
   /** Build an object to be stored in the array */
-  const itemID = Number(item.target.dataset.id);
+  const itemID = Number(event.target.dataset.id);
   const quantity = 1; // TODO: Need to change this to become a user input
   const search = basket.find(item => item.itemID === itemID); /** Compares the item to all items in the basket to see if it already exists */
 
@@ -74,6 +80,30 @@ export function storeLocal(item) {
   localStorage.setItem('basket', stringifiedBasket);
 }
 
+export function addLocal(event) {
+  const itemID = Number(event.target.dataset.id);
+  const search = basket.find(item => item.itemID === itemID);
+
+  if (search) {
+    console.log('Add');
+    search.quantity += 1;
+  }
+  const stringifiedBasket = JSON.stringify(basket);
+  localStorage.setItem('basket', stringifiedBasket);
+}
+
+export function rmvLocal(event) {
+  const itemID = Number(event.target.dataset.id);
+  const search = basket.find(item => item.itemID === itemID);
+
+  if (search) {
+    console.log('Remove');
+    search.quantity -= 1;
+  }
+  const stringifiedBasket = JSON.stringify(basket);
+  localStorage.setItem('basket', stringifiedBasket);
+}
+
 /** Put items that the user clicks into an array to act as a localStorage basket so that the information can then be retrieved and used to create the proper basket */
 export function loadBasket() {
   const items = localStorage.getItem('basket');
@@ -86,23 +116,7 @@ export function loadBasket() {
 }
 
 /** Functions for checkout.js */
-/** This function is a placeholder for now.
- * In the future I want to make it so that each of the sections of the checkout page only appear one at a time.
- * Both this function and contactElems() are part of this idea */
-function hideElems() {
-  console.log('hideElems pls');
-}
 
-/** Mentioned in comment above! */
-export function contactElems() {
-  const back = document.createElement('button');
-  back.id = 'back2delivery';
-  back.textContent = 'Edit Delivery Details';
-  back.addEventListener('click', hideElems);
-
-  // const form = document.createElement('form');
-  // form.id = 'contactForm';
-}
 
 /** This temporary function lets me know that the checkout page has been loaded properly */
 export function cnsl() {

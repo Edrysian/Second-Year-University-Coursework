@@ -1,0 +1,142 @@
+:root{
+  font-family: Arial;
+  box-sizing: border-box;
+
+  --pad: 1rem;
+  --bg: rgb(234, 222, 63);
+  --fc: rgb(0, 0, 0);
+  --abg: rgb(255, 209, 59);
+  --brdr: thin solid rgb(0, 0, 0);
+}
+
+@media(prefers-color-scheme: dark){
+  :root{
+      --bg: rgb(0, 2, 125);
+      --fc: rgb(255, 255, 255);
+      --abg: rgb(34, 0, 204);
+      --brdr: thin solid rgb(255, 255, 255);
+  }
+}
+*{
+  margin: 0.5em;
+  padding: 0em;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+.grid > div {
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+a {
+  color: var(--fc);
+  text-decoration: none; /*Removes the underline*/
+  background-color: var(--abg); /*rgb(119, 0, 204); /*rgb(75,0,130)*/
+  border: var(--brdr);
+  padding-top:0.25em;
+  padding-bottom:0.25em;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  margin: 0.5em;
+  border-radius: 100px;
+  box-shadow: inset rgba(255, 255, 255, 1), inset rgba(255, 255, 255, 1);
+}
+a:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 215, 0);
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 1), inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+h1 {
+  background-color: var(--abg);
+  padding: 0.5em;
+  margin: 0em auto;
+  text-align: center;
+  text-decoration: bold;
+}
+header {
+  background-color: var(--abg);
+  text-align: right;
+}
+header li {
+  display: inline-block;
+  align-items: flex-end;
+  text-align: right;
+}
+#hdr #login {
+  color: var(--fc);
+  text-decoration: none; /*Removes the underline*/
+  background-color: var(--abg); /*rgb(119, 0, 204); /*rgb(75,0,130)*/
+  border: var(--brdr);
+  padding-top:0.25em;
+  padding-bottom:0.25em;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  margin: 0.5em;
+  border-radius: 100px;
+  box-shadow: inset rgba(255, 255, 255, 1), inset rgba(255, 255, 255, 1);  
+}
+#hdr #login:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 215, 0);
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 1), inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+#hdr #bsktBtn {
+  color: var(--fc);
+  text-decoration: none; /*Removes the underline*/
+  background-color: var(--abg); /*rgb(119, 0, 204); /*rgb(75,0,130)*/
+  border: var(--brdr);
+  padding-top:0.25em;
+  padding-bottom:0.25em;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  margin: 0.5em;
+  border-radius: 100px;
+  box-shadow: inset rgba(255, 255, 255, 1), inset rgba(255, 255, 255, 1);
+}
+#hdr #bsktBtn:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 215, 0);
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 1), inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+body {
+  background: var(--bg);
+  color: var(--fc);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: "hdr" "buttons" "brickFilter" "bricks" "image";
+}
+
+div #homeBar {
+  background-color: var(--abg);
+}
+div #homeBar li {
+  display: inline-block;
+}
+#brickFilter li {
+  display: inline-block;
+}
+#bricks li {
+  display: block;
+  border: var(--brdr);
+  box-shadow: -3px 3px 3px rgba(255, 255, 255, 1), 2px 2px 3px rgba(0, 0, 0, .6);;
+}
+div#bricks li div img#image {
+  display: flex;
+  justify-content: right;
+  padding: 0.5em;
+  }
+#bricks li #colour {
+  border: none;
+  box-shadow: none;
+}
+#bricks img #image {
+  width: 100px;
+  height: 100px;
+}
