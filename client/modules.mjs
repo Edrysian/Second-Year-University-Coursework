@@ -2,33 +2,29 @@
 
 export const basket = [];
 
-export function cnsl() {
-  console.log('checkout', basket);
-}
-
-// Remove all of the content on the specified area to make sure that the brickList can go where I have told it too
+/** Functions for bricks.js */
+/** Remove all of the content on the specified area to make sure that the brickList can go where I have told it too */
 export function removeContent(content) {
   while (content.firstElementChild) {
     content.firstElementChild.remove();
   }
 }
 
-// Creates the list of bricks on "bricks.html"
-export function showBricks(data, where) {
+/** Creates the list of bricks on "bricks.html" */
+export function brickElems(data, where) {
   for (const brick of data) {
+    // const div = document.createElement('div');
+    // div.dataset.id = brick.id;
+
     const li = document.createElement('li');
     li.textContent = brick.name;
     li.dataset.id = brick.id;
+    // div.append(li);
 
     const img = document.createElement('img');
     img.src = brick.image;
     img.dataset.id = brick.id;
     li.append(img);
-
-    const name = document.createElement('p');
-    name.src = brick.name;
-    name.dataset.id = brick.id;
-    li.append(name);
 
     const colour = document.createElement('li');
     colour.textContent = brick.colour;
@@ -37,6 +33,7 @@ export function showBricks(data, where) {
 
     const qty = document.createElement('input');
     qty.placeholder = 'Quantity: 1';
+    qty.type = 'number';
     qty.dataset.id = brick.id;
     qty.id = 'usrInput';
     qty.autocomplete = false;
@@ -53,6 +50,7 @@ export function showBricks(data, where) {
     if (where != null) {
       where.append(li);
     }
+    // console.log('div', div);
   }
 }
 
@@ -76,6 +74,7 @@ export function storeLocal(item) {
   localStorage.setItem('basket', stringifiedBasket);
 }
 
+/** Put items that the user clicks into an array to act as a localStorage basket so that the information can then be retrieved and used to create the proper basket */
 export function loadBasket() {
   const items = localStorage.getItem('basket');
   console.log('items', items);
@@ -84,4 +83,28 @@ export function loadBasket() {
   if (items != null) {
     basket.push(...bsk2);
   }
+}
+
+/** Functions for checkout.js */
+/** This function is a placeholder for now.
+ * In the future I want to make it so that each of the sections of the checkout page only appear one at a time.
+ * Both this function and contactElems() are part of this idea */
+function hideElems() {
+  console.log('hideElems pls');
+}
+
+/** Mentioned in comment above! */
+export function contactElems() {
+  const back = document.createElement('button');
+  back.id = 'back2delivery';
+  back.textContent = 'Edit Delivery Details';
+  back.addEventListener('click', hideElems);
+
+  // const form = document.createElement('form');
+  // form.id = 'contactForm';
+}
+
+/** This temporary function lets me know that the checkout page has been loaded properly */
+export function cnsl() {
+  console.log('checkout', basket);
 }
