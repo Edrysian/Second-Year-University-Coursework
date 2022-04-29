@@ -56,7 +56,7 @@ function replaceBrickElems() {
     purchase.textContent = 'Checkout';
     a.append(purchase);
 
-    const header = document.getElementById('header');
+    const header = document.getElementById('hdr');
     if (bricks.textContent === '') {
       header.append(a);
     }
