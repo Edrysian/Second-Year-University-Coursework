@@ -14,31 +14,7 @@ function prepareHandles() {
 }
 
 async function deliveryConfirm() {
-  const form = el.deliveryForm.value;
-  const obj = { form };
-  const response = await fetch('/delivery', {
-    method: 'POST',
-    body: JSON.stringify(obj),
-  });
 
-  if (!response.ok) {
-    console.warn('Delivery Information not entered correctly', response);
-  } else {
-    console.log('Delivery Information submitted successfully!');
-  }
-
-  loadDelivery();
-}
-
-async function loadDelivery() {
-  const response = await fetch('/delivery');
-  if (!response.ok) {
-    console.error('Cannot get delivery information!', response);
-    return;
-  }
-
-  const text = await response.text();
-  el.testElem.textContent = text;
 }
 
 function prepareListeners() {
@@ -52,5 +28,3 @@ function pageLoaded() {
 }
 
 window.addEventListener('load', pageLoaded);
-
-setInterval(loadDelivery, 5000);

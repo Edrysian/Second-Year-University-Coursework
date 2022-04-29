@@ -32,17 +32,6 @@ function postBrick(req, res) {
 //     res.json(brick);
 // }
 
-let delivery = 'No delivery yet.';
-
-app.post('/delivery', express.json(), function (req, res) {
-  delivery = req.body.form;
-  res.send('accepted');
-});
-
-app.get('/delivery', (req, res) => {
-  res.send(delivery);
-});
-
 app.get('/data', getBricks);
 app.get('/data/:id', getBrickInfo);
 // app.put('/data/:id', putBrick);
